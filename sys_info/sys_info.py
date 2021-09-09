@@ -11,8 +11,6 @@
 from chrisapp.base import ChrisApp
 import os
 import platform
-import socket
-
 
 Gstr_title = r"""
                  _        __      
@@ -136,8 +134,7 @@ class Sys_info(ChrisApp):
         print("Machine: " + platform.machine())
 
         # node
-        #print("Node: " + platform.node())
-        print("Node: " + socket.gethostname())
+        print("Node: " + platform.node())
 
         # processor
         print("Processors: ")
@@ -145,8 +142,9 @@ class Sys_info(ChrisApp):
             info = f.readlines()
 
         cpuinfo = [x.strip().split(":")[1] for x in info if "model name"  in x]
+        bogoinfo = [x.strip().split(":")[1] for x in info if "bogomips"  in x]
         for index, item in enumerate(cpuinfo):
-            print("    " + str(index) + ": " + item)
+            print("    " + str(index) + ": " + item + "  bogomips:" + bogoinfo[index])
 
         # system
         print("System: " + platform.system())
@@ -154,7 +152,7 @@ class Sys_info(ChrisApp):
         # distribution
         #dist = platform.dist()
         #dist = " ".join(x for x in dist)
-        #print("Distribution: " + dist)
+        print("Distribution: " + platform.version())
 
         # Load
         with open("/proc/loadavg", "r") as f:
