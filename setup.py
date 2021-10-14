@@ -6,7 +6,7 @@ with open(path.join(path.dirname(path.abspath(__file__)), 'README.rst')) as f:
 
 setup(
     name             = 'sys_info',
-    version          = '0.2.0',
+    version          = '0.2.1',
     description      = 'An app to display systen information',
     long_description = readme,
     author           = 'Sandip Samal',
